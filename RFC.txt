@@ -26,10 +26,22 @@ To address these challenges,I propose a Django-based web application utilizing H
 - **Database**: Relational schema using Django ORM.
 
 ## Database Schema
+Table InventoryLevel {
+    id UUID [pk]
+    name VARCHAR(255)
+    parent_id UUID [ref: > InventoryLevel.id, null]
+    created_at TIMESTAMP
+    updated_at TIMESTAMP
+}
 
-
-
-
+Table Component {
+    id UUID [pk]
+    identifier VARCHAR(255)
+    description TEXT
+    inventory_level_id UUID [ref: > InventoryLevel.id]
+    created_at TIMESTAMP
+    updated_at TIMESTAMP
+}
 
 ## Conclusion
 
@@ -38,8 +50,52 @@ This RFC outlines a robust solution for managing gas storage inventory efficient
 - A scalable database schema for structured inventory management.
 - An intuitive user experience with infinite scrolling and modal-based interactions.
 
-Future enhancements could include user authentication, role-based access control, and API integrations with external systems.
+## Future enhancements:  
+- user authentication
+- role-based access control
+- API integrations with external systems.
 
-## Key Html is not my strong point but i really  tried 
+## Pipeline Database proposal 
 
-## Database proposal 
+Table pipelines {
+    id SERIAL [pk]
+    name VARCHAR
+    material VARCHAR
+    pressure NUMERIC
+    length NUMERIC
+    start_point_lat NUMERIC
+    start_point_lon NUMERIC
+    end_point_lat NUMERIC
+    end_point_lon NUMERIC
+}
+
+Table pipeline_connections {
+    id SERIAL [pk]
+    pipeline_a_id INT [ref: > pipelines.id]
+    pipeline_b_id INT [ref: > pipelines.id]
+    connection_lat NUMERIC
+    connection_lon NUMERIC
+}
+
+Table leak_events {
+    id SERIAL [pk]
+    location_lat NUMERIC
+    location_lon NUMERIC
+    affected_pipelines INT[]
+    gas_removed NUMERIC
+}
+
+Table inspection_routes {
+    id SERIAL [pk]
+    route_description TEXT
+    frequency INTERVAL
+    pipeline_id INT [ref: > pipelines.id]
+}
+-  A relational database, excels at managing structured data with clear relationships,
+such as pipelines and their connections. It supports ACID compliance and ensures data consistency,
+which is critical for accurately modeling pipeline networks and their attributes.
+- This approach is standard in relational databases and allows for efficient querying of connectivity information.
+- with PostgreSQL indexing capabilities ensures that queries are efficient.
+- simplicity without Over engineering when handling geospatial data  like longitude or latitude which can be numeric
+- while supporting key operational scenarios like leak repair and inspection planning. It balances simplicity, performance, and extensibility, 
+ensuring that the database can scale with future requirements without overcomplicating the schema.
