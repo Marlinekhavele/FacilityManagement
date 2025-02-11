@@ -17,7 +17,7 @@ A web-based inventory management system for gas storage facilities.
 ### Installation
 
 - Clone the repository:
-`git clone https://github.com/Marlinekhavele/Contact-Centre-API `
+`git clone https://github.com/Marlinekhavele/FacilityManagement`
 
 - cd `facility`
 
@@ -61,7 +61,7 @@ Install dependencies:
 pip install -r requirements.txt
 ```
 
-Set up the database:
+Initialize the database:
 ```shell
 python manage.py makemigrations
 python manage.py migrate
