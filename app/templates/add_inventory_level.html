@@ -1,0 +1,34 @@
+{% extends 'base_generic.html' %}
+
+{% block title %}Inventory Levels{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Inventory Levels</h2>
+    
+    <!-- Add Inventory Level Button -->
+    <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addInventoryModal">
+        Add Inventory Level
+    </button>
+
+    <!-- Inventory Table -->
+    <div id="inventory-table">
+        {% include 'inventory_list.html' %}
+    </div>
+
+    <!-- Bootstrap Modal for Adding Inventory Level -->
+    <div class="modal fade" id="addInventoryModal" tabindex="-1" aria-labelledby="addInventoryModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addInventoryModalLabel">Add Inventory Level</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {% include 'add_inventory_form.html' %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

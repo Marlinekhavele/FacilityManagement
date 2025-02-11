@@ -1,0 +1,23 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <div class="container">
+    <h1 class="my-4">Add New Component</h1>
+
+    <form method="post">
+      {% csrf_token %}
+      <div class="mb-3">
+        {{ form.identifier }} 
+      </div>
+      <div class="mb-3">
+        {{ form.description }}
+      </div>
+      <div class="mb-3">
+        {{ form.inventory_level }}
+      </div>
+      <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+
+    <a href="{% url 'component_list' %}" class="btn btn-secondary mt-3">Back to Component List</a>
+  </div>
+{% endblock %}

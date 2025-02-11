@@ -1,0 +1,45 @@
+# Inventory Management System for Gas Storage Facilities
+
+## Overview
+This document outlines the rationale and design of a web-based inventory management system for gas storage facilities. 
+The system is designed to efficiently manage and organize facility components while providing an intuitive user experience using Django, HTMX, and Bootstrap.
+
+## Problem Statement
+
+Gas storage facilities require a structured and scalable system to track their components efficiently. The main challenges include:
+- Managing a hierarchical inventory structure.
+- Providing real-time, dynamic interactions without full page reloads.
+- Ensuring seamless user experience with infinite scrolling, filtering, and sorting.
+- Allowing quick component creation through modals.
+
+## Solution Overview
+
+To address these challenges,I propose a Django-based web application utilizing HTMX for lightweight,reactive front-end interactions. The key features include:
+- **Infinite Scrolling**: Dynamically loads more components as users scroll.
+- **Filtering and Sorting**: Allows users to refine results based on search terms and inventory levels.
+- **Component Creation via Modal**: Enables users to add components without navigating away from the page.
+
+## Tech Stack
+
+- **Backend**: Django (Python) with PostgreSQL.
+- **Frontend**: HTMX, Bootstrap for styling.
+- **Database**: Relational schema using Django ORM.
+
+## Database Schema
+
+
+
+
+
+## Conclusion
+
+This RFC outlines a robust solution for managing gas storage inventory efficiently. By leveraging Django and HTMX, we achieve:
+- A fast, responsive interface without full-page reloads.
+- A scalable database schema for structured inventory management.
+- An intuitive user experience with infinite scrolling and modal-based interactions.
+
+Future enhancements could include user authentication, role-based access control, and API integrations with external systems.
+
+## Key Html is not my strong point but i really  tried 
+
+## Database proposal 

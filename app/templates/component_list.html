@@ -1,0 +1,64 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <div class="container">
+    <h1 class="my-4">Component List</h1>
+
+    <!-- Search Form -->
+    <form method="get" class="d-flex mb-4">
+      <input type="text" name="query" class="form-control me-2" placeholder="Search components" value="{{ request.GET.query }}">
+      <select name="level" class="form-select me-2">
+        <option value="">All Levels</option>
+        {% for level in levels %}
+          <option value="{{ level.id }}" {% if level.id == request.GET.level %}selected{% endif %}>{{ level.name }}</option>
+        {% endfor %}
+      </select>
+      <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+
+    <!-- Component List Table -->
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Identifier</th>
+          <th>Description</th>
+          <th>Inventory Level</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for component in page %}
+          <tr>
+            <td>{{ component.identifier }}</td>
+            <td>{{ component.description }}</td>
+            <td>{{ component.inventory_level.name }}</td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="3">No components found.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <!-- Pagination -->
+    <div class="d-flex justify-content-between">
+      <div>
+        {% if page.has_previous %}
+          <a href="?page=1&query={{ request.GET.query }}&level={{ request.GET.level }}" class="btn btn-secondary btn-sm">First</a>
+          <a href="?page={{ page.previous_page_number }}&query={{ request.GET.query }}&level={{ request.GET.level }}" class="btn btn-secondary btn-sm">Previous</a>
+        {% endif %}
+      </div>
+
+      <div>
+        <span class="current">Page {{ page.number }} of {{ page.paginator.num_pages }}.</span>
+      </div>
+
+      <div>
+        {% if page.has_next %}
+          <a href="?page={{ page.next_page_number }}&query={{ request.GET.query }}&level={{ request.GET.level }}" class="btn btn-secondary btn-sm">Next</a>
+          <a href="?page={{ page.paginator.num_pages }}&query={{ request.GET.query }}&level={{ request.GET.level }}" class="btn btn-secondary btn-sm">Last</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

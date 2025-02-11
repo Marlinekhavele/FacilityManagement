@@ -1,0 +1,16 @@
+<table class="table table-bordered table-striped table-hover">
+  <thead class="table-dark">
+      <tr>
+          <th>Name</th>
+          <th>Parent</th>
+      </tr>
+  </thead>
+  <tbody>
+      {% for level in inventory_levels %}
+      <tr>
+          <td>{{ level.name }}</td>
+          <td>{{ level.parent.name|default:"-" }}</td>
+      </tr>
+      {% endfor %}
+  </tbody>
+</table>
