@@ -6,17 +6,22 @@
 
     <form method="post">
       {% csrf_token %}
-      {{form.as_p}}
-      <!-- <div class="mb-3">
-        <h4>title</h4>
-        {{ form.identifier }} 
-      </div>
+
       <div class="mb-3">
+        <label for="{{ form.identifier.id_for_label }}" class="form-label">Identifier</label>
+        {{ form.identifier }}
+      </div>
+      
+      <div class="mb-3">
+        <label for="{{ form.description.id_for_label }}" class="form-label">Description</label>
         {{ form.description }}
       </div>
+      
       <div class="mb-3">
+        <label for="{{ form.inventory_level.id_for_label }}" class="form-label">Inventory Level</label>
         {{ form.inventory_level }}
-      </div> -->
+      </div>
+
       <button type="submit" class="btn btn-primary">Save</button>
     </form>
 
