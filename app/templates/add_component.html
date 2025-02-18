@@ -6,7 +6,9 @@
 
     <form method="post">
       {% csrf_token %}
-      <div class="mb-3">
+      {{form.as_p}}
+      <!-- <div class="mb-3">
+        <h4>title</h4>
         {{ form.identifier }} 
       </div>
       <div class="mb-3">
@@ -14,7 +16,7 @@
       </div>
       <div class="mb-3">
         {{ form.inventory_level }}
-      </div>
+      </div> -->
       <button type="submit" class="btn btn-primary">Save</button>
     </form>
 
